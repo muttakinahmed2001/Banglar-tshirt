@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import TShirt from '../TShirt/TShirt';
+import Cart from '../Cart/Cart';
+import './Home.css'
 
 const Home = () => {
     const  tShirts = useLoaderData();
+    // const [cart,setCart]=useState;
+    const handlerAddToCart = ()=>{
+        console.log('handler added')
+    }
     return (
-        <div>
-            <h3>This is home.</h3>
-            <h3>T-shirts are {tShirts.length}</h3>
+        <div className='home-container'>
+             <div className='t-shirts-container'>{
+                tShirts.map(tShirt =><TShirt
+                key={tShirt._id}
+                tShirt={tShirt}
+                handlerAddToCart={handlerAddToCart}
+                ></TShirt>)
+            }</div>
+
+            <div className='cart-container'>
+<Cart></Cart>
+            </div>
+            
         </div>
     );
 };
